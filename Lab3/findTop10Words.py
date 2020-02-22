@@ -1,5 +1,5 @@
 
-def most_frequent(alist): 
+def sort_by_frequency(alist): 
     dict = {} 
     count, itm = 0, '' 
     for item in reversed(alist): 
@@ -18,6 +18,6 @@ with open('listOfPDFWords.txt', 'r') as filehandle:
         # add item to the list
         words.append(currentWord)
 
-reverse_words = most_frequent(words)
+reverse_words = sort_by_frequency(words)
 for i in range(0,10):
     print(reverse_words[i])
