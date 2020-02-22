@@ -1,6 +1,7 @@
 from scipy.stats import entropy
 import random
 
+
 def sort_by_frequency(alist): 
     dict = {} 
     count, itm = 0, '' 
@@ -24,11 +25,15 @@ with open('listOfPDFWords.txt', 'r', encoding='utf8') as filehandle:
 num_words = len(words)
 reverse_words = sort_by_frequency(words)
 list_of_frequency = []
+list_word_freq_pair = []
+
+total_probrability = 0
 for word_freq_pair in reverse_words:
     list_of_frequency.append(word_freq_pair[1]/num_words)
+    total_probrability += word_freq_pair[1]/num_words
+    list_word_freq_pair.append([word_freq_pair[0], total_probrability])
 
 print("Entropy: " + str(entropy(list_of_frequency, base=num_words)))
-
 print()
 
 num_words_para = 200
