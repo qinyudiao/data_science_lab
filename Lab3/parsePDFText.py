@@ -3,9 +3,11 @@ import os, glob
 import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-nltk.download('punkt')
 
 from tika import parser
+
+import enchant
+d = enchant.Dict("en_US")
 
 words = []
 path = '/Users/diaoqinyu/Desktop/EE460J/Lab3/pdfs'
@@ -30,4 +32,10 @@ for filename in glob.glob(os.path.join(path, '*.pdf')):
 
 with open('listOfPDFWords.txt', 'w') as filehandle:
     for listitem in words:
-        filehandle.write('%s\n' % listitem)
+        if d.check(listitem) is True:
+            filehandle.write('%s\n' % listitem)
+
+# with open('listOfPDFSentences.txt', 'w') as filehandle:
+#     for listitem in words:
+#         if d.check(listitem) is True:
+#             filehandle.write('%s\n' % listitem)
